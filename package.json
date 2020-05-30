@@ -1,0 +1,31 @@
+{
+    "name": "mern-jiffy-api",
+    "version": "1.0.0",
+    "description": "Backend for Mern-Jiffy",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/urlDev/mern-jiffy-api.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/urlDev/mern-jiffy-api/issues"
+    },
+    "homepage": "https://github.com/urlDev/mern-jiffy-api#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongodb": "^3.5.8",
+        "mongoose": "^5.9.16",
+        "validator": "^13.0.0"
+    },
+    "devDependencies": {
+        "env-cmd": "^10.1.0",
+        "nodemon": "^2.0.4"
+    }
+}
