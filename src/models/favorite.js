@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Favorite = mongoose.model('Favorite', {
+const favoriteSchema = new mongoose.Schema({
   gif: {
     type: Array,
   },
@@ -10,5 +10,18 @@ const Favorite = mongoose.model('Favorite', {
     ref: 'User',
   },
 });
+
+favorite.methods.toJSON = function () {
+  const favorite = this;
+  const favoriteObject = user.toObject();
+
+  delete favoriteObject.owner;
+  delete favoriteObject._id;
+  delete favoriteObject.__v;
+
+  return favoriteObject;
+};
+
+const Favorite = mongoose.model('Favorite', favoriteSchema);
 
 module.exports = Favorite;
