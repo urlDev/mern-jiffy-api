@@ -41,7 +41,7 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-router.delete('/', auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     const favorite = await Favorite.findOneAndDelete({
       _id: req.params.id,
