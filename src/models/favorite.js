@@ -11,7 +11,7 @@ const favoriteSchema = new mongoose.Schema({
   },
 });
 
-favorite.methods.toJSON = function () {
+favoriteSchema.methods.toJSON = function () {
   const favorite = this;
   const favoriteObject = favorite.toObject();
 
