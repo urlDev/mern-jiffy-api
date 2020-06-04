@@ -11,16 +11,16 @@ const favoriteSchema = new mongoose.Schema({
   },
 });
 
-favoriteSchema.methods.toJSON = function () {
-  const favorite = this;
-  const favoriteObject = favorite.toObject();
+// favoriteSchema.methods.toJSON = function () {
+//   const favorite = this;
+//   const favoriteObject = favorite.toObject();
 
-  delete favoriteObject.owner;
-  delete favoriteObject._id;
-  delete favoriteObject.__v;
+//   delete favoriteObject.owner;
+//   delete favoriteObject._id;
+//   delete favoriteObject.__v;
 
-  return favoriteObject;
-};
+//   return favoriteObject;
+// };
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);
 
