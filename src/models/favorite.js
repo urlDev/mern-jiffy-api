@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 const Favorite = mongoose.model('Favorite', {
-  id: {
-    type: String,
-    trim: true,
+  gif: {
+    type: Array,
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
