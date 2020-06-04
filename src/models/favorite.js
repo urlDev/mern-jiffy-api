@@ -13,7 +13,7 @@ const favoriteSchema = new mongoose.Schema({
 
 favorite.methods.toJSON = function () {
   const favorite = this;
-  const favoriteObject = user.toObject();
+  const favoriteObject = favorite.toObject();
 
   delete favoriteObject.owner;
   delete favoriteObject._id;
