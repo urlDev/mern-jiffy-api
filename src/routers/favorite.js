@@ -3,7 +3,7 @@ const router = new express.Router();
 const Favorite = require('../models/favorite');
 const auth = require('../middleware/auth');
 
-router.post('/:slug', auth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const favorite = new Favorite({
     ...req.body,
     owner: req.user._id,
@@ -41,7 +41,7 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/, auth, async (req, res) => {
   try {
     const favorite = await Favorite.findOneAndDelete({
       _id: req.params.id,
