@@ -1,10 +1,18 @@
 const express = require('express');
+const multer = require('multer');
+const Jimp = require('jimp');
 const router = new express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
+const avatar = require('../middleware/avatar');
 
 router.post('/profile/register', async (req, res) => {
-  const user = new User(req.body);
+  const image = await avatar(req.body.email);
+  const reqBodyWithImage = {
+    ...req.body,
+    avatar: image,
+  };
+  const user = new User(reqBodyWithImage);
 
   try {
     const token = await user.generateAuthToken();
@@ -88,6 +96,63 @@ router.delete('/profile', auth, async (req, res) => {
     res.send(req.user);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+const upload = multer({
+  limits: {
+    fileSize: 1000000,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error('Please upload an image'));
+    }
+    cb(undefined, true);
+  },
+});
+
+router.post(
+  '/profile/avatar',
+  auth,
+  upload.single('avatar'),
+  async (req, res) => {
+    try {
+      // we can find the file as buffer under req.file.buffer
+      // and we are saving it as avatar
+      req.user.avatar = req.file.buffer;
+      await req.user.save();
+      res.send();
+    } catch (error) {
+      res.send(error);
+    }
+  },
+  (error, req, res, next) => {
+    res.status(400).send({ Error: error.message });
+  }
+);
+
+router.delete('/profile/avatar', auth, async (req, res) => {
+  try {
+    req.user.avatar = undefined;
+    await req.user.save();
+    res.send();
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.get('/profile/:id/avatar', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user || !user.avatar) {
+      throw new Error();
+    }
+
+    res.set('Content-Type', 'image/jpg');
+    res.send(user.avatar);
+  } catch (error) {
+    res.status(404).send();
   }
 });
 

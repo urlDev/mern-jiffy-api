@@ -4,6 +4,9 @@ const favoriteSchema = new mongoose.Schema({
   gif: {
     type: Array,
   },
+  added: {
+    type: Date,
+  }
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
