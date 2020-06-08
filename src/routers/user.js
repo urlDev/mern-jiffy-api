@@ -1,6 +1,5 @@
 const express = require('express');
 const multer = require('multer');
-const Jimp = require('jimp');
 const router = new express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
