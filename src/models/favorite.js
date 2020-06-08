@@ -6,7 +6,7 @@ const favoriteSchema = new mongoose.Schema({
   },
   added: {
     type: Date,
-  }
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
