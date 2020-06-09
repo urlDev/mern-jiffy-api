@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const sharp = require('sharp');
 const router = new express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
@@ -118,7 +119,11 @@ router.post(
     try {
       // we can find the file as buffer under req.file.buffer
       // and we are saving it as avatar
-      req.user.avatar = req.file.buffer;
+      const image = await sharp(req.file.buffer)
+        .resize({ width: 256, height: 256 })
+        .webp()
+        .toBuffer();
+      req.user.avatar = image;
       await req.user.save();
       res.send();
     } catch (error) {
@@ -148,7 +153,7 @@ router.get('/profile/:id/avatar', async (req, res) => {
       throw new Error();
     }
 
-    res.set('Content-Type', 'image/jpg');
+    res.set('Content-Type', 'image/webp');
     res.send(user.avatar);
   } catch (error) {
     res.status(404).send();
