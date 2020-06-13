@@ -119,11 +119,21 @@ router.post(
     try {
       // we can find the file as buffer under req.file.buffer
       // and we are saving it as avatar
-      const image = await sharp(req.file.buffer)
-        .resize({ width: 256, height: 256 })
+      const imageWebP = await sharp(req.file.buffer)
+        .resize({ width: 400, height: 400 })
         .webp()
         .toBuffer();
-      req.user.avatar = image;
+      const imagePng = await sharp(req.file.buffer)
+        .resize({
+          width: 400,
+          height: 400,
+        })
+        .png()
+        .toBuffer();
+      req.user.avatar = {
+        png: imagePng,
+        webp: imageWebP,
+      };
       await req.user.save();
       res.send();
     } catch (error) {
