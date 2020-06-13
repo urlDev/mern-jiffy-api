@@ -10,7 +10,9 @@ router.post('/profile/register', async (req, res) => {
   const image = await avatar(req.body.email);
   const reqBodyWithImage = {
     ...req.body,
-    avatar: image,
+    avatar: {
+      png: image,
+    },
   };
   const user = new User(reqBodyWithImage);
 
