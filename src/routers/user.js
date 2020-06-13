@@ -163,7 +163,7 @@ router.get('/profile/:id/avatar', async (req, res) => {
       throw new Error();
     }
 
-    res.set('Content-Type', 'image/webp');
+    // res.set('Content-Type', 'application/json');
     res.send(user.avatar);
   } catch (error) {
     res.status(404).send();
