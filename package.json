@@ -1,44 +1,43 @@
 {
-    "name": "mern-jiffy-api",
-    "version": "1.0.0",
-    "description": "Backend for Mern-Jiffy",
-    "main": "index.js",
-    "scripts": {
-        "start": "node src/index.js",
-        "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-        "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
-    },
-    "jest": {
-        "testEnvironment": "node"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/urlDev/mern-jiffy-api.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/urlDev/mern-jiffy-api/issues"
-    },
-    "homepage": "https://github.com/urlDev/mern-jiffy-api#readme",
-    "dependencies": {
-        "adorable-avatars": "^0.4.1",
-        "axios": "^0.19.2",
-        "bcryptjs": "^2.4.3",
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "jsonwebtoken": "^8.5.1",
-        "mongodb": "^3.5.8",
-        "mongoose": "^5.9.16",
-        "multer": "^1.4.2",
-        "sharp": "^0.22.1",
-        "supertest": "^4.0.2",
-        "validator": "^13.0.0"
-    },
-    "devDependencies": {
-        "env-cmd": "^10.1.0",
-        "jest": "^26.0.1",
-        "nodemon": "^2.0.4"
-    }
+  "name": "mern-jiffy-api",
+  "version": "1.0.0",
+  "description": "Backend for Mern-Jiffy",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
+    "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urlDev/mern-jiffy-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/urlDev/mern-jiffy-api/issues"
+  },
+  "homepage": "https://github.com/urlDev/mern-jiffy-api#readme",
+  "dependencies": {
+    "adorable-avatars": "0.5.0",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.16",
+    "multer": "^1.4.2",
+    "sharp": "0.28.0",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  }
 }
