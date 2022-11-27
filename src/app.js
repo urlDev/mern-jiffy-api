@@ -1,9 +1,9 @@
 const express = require('express');
-require('./db/db');
 const userRouter = require('./routers/user');
 const favoriteRouter = require('./routers/favorite');
-const cors = require('cors');
 const avatarsMiddleware = require('adorable-avatars');
+const cors = require('cors');
+require('./db/mongoose');
 
 const app = express();
 
