@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const url = 'https://urldev-mern-jiffy-api.herokuapp.com';
+const url = process.env.API_URL;
 
 const avatar = async (id) => {
   let image = undefined;

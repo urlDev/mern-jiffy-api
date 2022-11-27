@@ -7,9 +7,9 @@ const auth = require('../middleware/auth');
 const avatar = require('../middleware/avatar');
 
 router.post('/profile/register', async (req, res) => {
-  const image = await avatar(req.body.email);
+  const image = await avatar(req.query.email);
   const reqBodyWithImage = {
-    ...req.body,
+    ...req.query,
     avatar: {
       png: image,
     },
@@ -28,8 +28,8 @@ router.post('/profile/register', async (req, res) => {
 router.post('/profile/login', async (req, res) => {
   try {
     const user = await User.findByCredentials(
-      req.body.email,
-      req.body.password
+      req.query.email,
+      req.query.password
     );
     const token = await user.generateAuthToken();
     res.send({ user, token });
@@ -67,7 +67,7 @@ router.get('/profile', auth, async (req, res) => {
 });
 
 router.patch('/profile', auth, async (req, res) => {
-  const updates = Object.keys(req.body);
+  const updates = Object.keys(req.query);
   const allowedUpdates = ['name', 'email', 'password'];
   const isValid = updates.every((update) => allowedUpdates.includes(update));
 
@@ -78,7 +78,7 @@ router.patch('/profile', auth, async (req, res) => {
   try {
     const user = req.user;
 
-    updates.forEach((update) => (user[update] = req.body[update]));
+    updates.forEach((update) => (user[update] = req.query[update]));
     await user.save();
 
     if (!user) {
